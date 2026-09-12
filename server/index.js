@@ -18,30 +18,21 @@ import activityRoutes from "./routes/activities.js";
 const app = express();
 const httpServer = createServer(app);
 
-// Allowed origins — includes deployed frontend via CLIENT_URL env var
-const allowedOrigins = [
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "https://rococo-taffy-d511ed.netlify.app",
-    process.env.CLIENT_URL,
-].filter(Boolean);
+// CORS config — reflect request origin for flexibility
+const corsOptions = {
+    origin: true,
+    credentials: true,
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+};
 
 // Socket.IO setup
-const io = new Server(httpServer, {
-    cors: {
-        origin: allowedOrigins,
-        methods: ["GET", "POST"],
-    },
-});
+const io = new Server(httpServer, { cors: corsOptions });
 
 // Make io available in routes
 app.set("io", io);
 
 // Middleware
-app.use(cors({
-    origin: allowedOrigins,
-    credentials: true,
-}));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan("dev"));
 
