@@ -2,6 +2,8 @@
 
 ProjectHub is a project management platform for teams to collaborate, assign tasks, and track project progress. It provides secure user authentication, team-based workspaces, Kanban boards, and real-time activity tracking.
 
+# Backend Deployment - [Project Management Portal](https://projecthub-api-7kfm.onrender.com/)
+
 ## Features
 - Secure user authentication and JWT authorization
 - Team-based workspaces and project collaboration
